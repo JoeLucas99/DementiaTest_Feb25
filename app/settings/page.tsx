@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useRouter } from "next/navigation"
 import { Button } from "../../components/ui/button"
 import { Input } from "../../components/ui/input"
@@ -13,6 +15,12 @@ export default function Settings() {
   const { stimuliCount, anglesPerQuadrant, correctQuadrant, useCorrectQuadrant, degreeVariance } = settings
   const router = useRouter()
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // You can add any additional logic here if needed
+    router.push("/")
+  }
+
   const handleDegreeVarianceChange = (value: string) => {
     const numValue = Math.max(10, Math.min(50, Math.round(Number(value) / 10) * 10))
     updateSettings({ degreeVariance: numValue })
@@ -21,7 +29,7 @@ export default function Settings() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
       <h1 className="text-5xl font-bold mb-8">Settings</h1>
-      <div className="w-full max-w-md space-y-6">
+      <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6">
         <div>
           <Label htmlFor="stimuliCount" className="text-xl">
             Number of Stimuli
@@ -105,12 +113,12 @@ export default function Settings() {
           />
         </div>
         <Button
-          onClick={() => router.push("/")}
+          onClick={handleSubmit}
           className="w-full text-xl py-3 px-6 bg-white text-black border border-black hover:bg-gray-100"
         >
           Save Settings
         </Button>
-      </div>
+      </form>
     </div>
   )
 }
