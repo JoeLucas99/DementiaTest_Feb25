@@ -105,7 +105,8 @@ export default function LineCanvas({
       angle: number,
       color: string,
       lineWidth = 6,
-      length: number = size / 10, // Adjusted to be slightly shorter
+      length: number = size / 10,
+      isTarget = false,
     ) => {
       const radians = (angle * Math.PI) / 180
       const endX = startX + Math.cos(radians) * length
