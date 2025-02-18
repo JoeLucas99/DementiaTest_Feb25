@@ -32,7 +32,7 @@ function generateStimuli(settings: Settings): Stimulus[] {
 
       // Fill the rest of the quadrant with angles
       while (quadrantAngles.length < anglesPerQuadrant) {
-        let newAngle
+        let newAngle: number
         let attempts = 0
         const maxAttempts = 100 // Prevent infinite loop
 
@@ -70,7 +70,7 @@ function generateStimuli(settings: Settings): Stimulus[] {
 
     // If we removed duplicates, add new unique angles to maintain the correct number of options
     while (options.length < anglesPerQuadrant * 4) {
-      let newAngle
+      let newAngle: number
       do {
         newAngle = Math.floor(Math.random() * 360)
         newAngle = Math.round(newAngle / 10) * 10 // Round to nearest 10
